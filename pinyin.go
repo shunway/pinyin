@@ -59,41 +59,8 @@ func init() {
 		}
 	}
 
-	/*f, err := getFileContent()
-	defer f.Close()
-
-	if err != nil {
-		initialized = false
-		log.Println(err)
-		errors.New("Open file failed")
-		return
-	}
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		strs := strings.Split(scanner.Text(), "=>")
-		if len(strs) < 2 {
-			continue
-		}
-		i, err := strconv.ParseInt(strs[0], 16, 32)
-		if err != nil {
-			continue
-		}
-		pinyinMap[rune(i)] = strs[1]
-	}*/
-	for key, _ := range py_map {
-		i, err := strconv.ParseInt(key, 16, 32)
-		if err != nil {
-			continue
-		}
-		pinyinMap[rune(i)] = py_map[key]
-	}
 	initialized = true
 }
-
-/*func getFileContent() (io.ReadCloser, error) {
-	resp, err := http.Get("https://raw.githubusercontent.com/chain-zhang/pinyin/master/pinyin.txt")
-	return resp.Body, err
-}*/
 
 func New(origin string) *pinyin {
 	return &pinyin{
@@ -150,7 +117,9 @@ func getPinyin(hanzi rune, mode Mode) (string, error) {
 }
 
 func getTone(hanzi rune) string {
-	return pinyinMap[hanzi]
+	key := strconv.FormatInt(int64(hanzi), 16)
+	return py_map[strings.ToUpper(key)]
+	//return pinyinMap[hanzi]
 }
 
 func getDefault(hanzi rune) string {
