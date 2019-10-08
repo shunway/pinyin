@@ -1,7 +1,5 @@
 # pinyin
 
-[![Build Status](https://travis-ci.com/Chain-Zhang/pinyin.svg?branch=master)](https://travis-ci.com/Chain-Zhang/pinyin)
-[![codecov](https://codecov.io/gh/Chain-Zhang/pinyin/branch/master/graph/badge.svg)](https://codecov.io/gh/Chain-Zhang/pinyin)
 
 golang实现中文汉字转拼音
 
@@ -11,32 +9,32 @@ package main
 
 import(
 	"fmt"
-	 "github.com/chain-zhang/pinyin"
+	 "github.com/shunway/pinyin"
 )
 
 func main()  {
-    str, err := pinyin.New("我是中国人").Split("").Mode(InitialsInCapitals).Convert()
+    str, err := pinyin.New("光荣与梦想").Split("").Mode(InitialsInCapitals).Convert()
 	if err != nil {
 		// 错误处理
 	}else{
 		fmt.Println(str)
 	}
 
-	str, err = pinyin.New("我是中国人").Split(" ").Mode(pinyin.WithoutTone).Convert()
+	str, err = pinyin.New("光荣与梦想").Split(" ").Mode(pinyin.WithoutTone).Convert()
 	if err != nil {
 		// 错误处理
     }else{
     	fmt.Println(str)
     }
 
-	str, err = pinyin.New("我是中国人").Split("-").Mode(pinyin.Tone).Convert()
+	str, err = pinyin.New("光荣与梦想").Split("-").Mode(pinyin.Tone).Convert()
 	if err != nil {
 		// 错误处理
     }else{
     	fmt.Println(str)
     }
 
-	str, err = pinyin.New("我是中国人").Convert()
+	str, err = pinyin.New("光荣与梦想").Convert()
 	if err != nil {
 		// 错误处理
     }else{
@@ -47,10 +45,10 @@ func main()  {
 
 输出
 ```bash
-WoShiZhongGuoRen
-wo shi zhong guo ren
-wǒ-shì-zhōng-guó-rén
-wo shi zhong guo ren
+GuangRongYuMengXiang
+guang rong yu meng xiang
+guāng-róng-yǔ-mèng-xiǎng
+guang rong yu meng xiang
 ```
 
 Mode 介绍
