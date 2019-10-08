@@ -39,6 +39,7 @@ const (
 	WithoutTone        Mode = iota + 1 // 默认模式，例如：guo
 	Tone                               // 带声调的拼音 例如：guó
 	InitialsInCapitals                 // 首字母大写不带声调，例如：Guo
+	Initials                           // 仅大写首字母，例如：G
 )
 
 type pinyin struct {
@@ -141,6 +142,8 @@ func getPinyin(hanzi rune, mode Mode) (string, error) {
 		return getTone(hanzi), nil
 	case InitialsInCapitals:
 		return getInitialsInCapitals(hanzi), nil
+	case Initials:
+		return getInitials(hanzi), nil
 	default:
 		return getDefault(hanzi), nil
 	}
@@ -182,4 +185,16 @@ func getInitialsInCapitals(hanzi rune) string {
 		sr[0] = sr[0] - 32
 	}
 	return string(sr)
+}
+
+func getInitials(hanzi rune) string {
+	def := getDefault(hanzi)
+	if def == "" {
+		return def
+	}
+	sr := []rune(def)
+	if sr[0] > 32 {
+		sr[0] = sr[0] - 32
+	}
+	return string(sr[0])
 }

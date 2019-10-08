@@ -39,7 +39,14 @@ func main()  {
 		// 错误处理
     }else{
     	fmt.Println(str)
-    }	
+    }
+
+    str, err := pinyin.New("光荣与梦想").Split("").Mode(Initials).Convert()
+    if err != nil {
+        // 错误处理
+    }else{
+        fmt.Println(str)
+    }
 }
 ```
 
@@ -49,6 +56,7 @@ GuangRongYuMengXiang
 guang rong yu meng xiang
 guāng-róng-yǔ-mèng-xiǎng
 guang rong yu meng xiang
+GRYMX
 ```
 
 Mode 介绍
