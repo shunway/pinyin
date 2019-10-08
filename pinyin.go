@@ -1,9 +1,9 @@
 package pinyin
 
 import (
-	"bufio"
+	//"bufio"
 	//"io"
-	"os"
+	//"os"
 	//"net/http"
 	"strconv"
 	"strings"
@@ -58,11 +58,13 @@ func init() {
 		}
 	}
 
-	//f, err := getFileContent()
-	f, err := os.Open("./pinyin.txt")
+	/*f, err := getFileContent()
 	defer f.Close()
+
 	if err != nil {
 		initialized = false
+		log.Println(err)
+		errors.New("Open file failed")
 		return
 	}
 	scanner := bufio.NewScanner(f)
@@ -76,6 +78,13 @@ func init() {
 			continue
 		}
 		pinyinMap[rune(i)] = strs[1]
+	}*/
+	for key, _ := range py_map {
+		i, err := strconv.ParseInt(key, 16, 32)
+		if err != nil {
+			continue
+		}
+		pinyinMap[rune(i)] = py_map[key]
 	}
 	initialized = true
 }
