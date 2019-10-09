@@ -110,7 +110,7 @@ func getPinyin(hanzi rune, mode Mode) (string, error) {
 	case InitialsInCapitals:
 		return getInitialsInCapitals(hanzi), nil
 	case Initials:
-		return getInitials(hanzi), nil
+		return string(getInitialsInCapitals(hanzi)[0]), nil
 	default:
 		return getDefault(hanzi), nil
 	}
@@ -154,16 +154,4 @@ func getInitialsInCapitals(hanzi rune) string {
 		sr[0] = sr[0] - 32
 	}
 	return string(sr)
-}
-
-func getInitials(hanzi rune) string {
-	def := getDefault(hanzi)
-	if def == "" {
-		return def
-	}
-	sr := []rune(def)
-	if sr[0] > 32 {
-		sr[0] = sr[0] - 32
-	}
-	return string(sr[0])
 }

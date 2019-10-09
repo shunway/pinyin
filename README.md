@@ -13,7 +13,7 @@ import(
 )
 
 func main()  {
-    str, err := pinyin.New("光荣与梦想").Split("").Mode(InitialsInCapitals).Convert()
+    str, err := pinyin.New("光荣与梦想").Split("").Mode(pinyin.InitialsInCapitals).Convert()
 	if err != nil {
 		// 错误处理
 	}else{
@@ -41,7 +41,7 @@ func main()  {
     	fmt.Println(str)
     }
 
-    str, err := pinyin.New("光荣与梦想").Split("").Mode(Initials).Convert()
+    str, err := pinyin.New("光荣与梦想").Split("").Mode(pinyin.Initials).Convert()
     if err != nil {
         // 错误处理
     }else{
@@ -64,6 +64,7 @@ Mode 介绍
 * `InitialsInCapitals`: 首字母大写, 不带音调
 * `WithoutTone`: 全小写,不带音调
 * `Tone`: 全小写带音调
+* `Initials`: 首字母大写, 不带其他
 
 Split 介绍
 
